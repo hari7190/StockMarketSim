@@ -14,16 +14,18 @@ This module is expected to be able to provide a web UI for the following.
 3. Delete a stock - Will involve multiple actions before doing
 
 
+And before that:
+1. Create an account 
+    a. username/password 
+    b. company name 
+2. Authentication
+    a. login
+    b. logout
+    c. expire session 
 
+Other authentications will come later.
 
-
-
-
-
-
-
-
-
+<h2> Technical details </h2>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
