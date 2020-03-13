@@ -4,8 +4,8 @@
 
 
 This application will be a collection of the following individual modules.
-1.  Stock Administrators
-2.  Market Statistics 
+1. Stock Administrators
+2. Market Statistics 
 3. Clients placing orders for Buying and Selling stocks
 4. Buyer Portfolio
 5. Feedback engine to simulate seller behavior
