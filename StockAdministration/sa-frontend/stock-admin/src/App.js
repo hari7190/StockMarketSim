@@ -25,25 +25,33 @@ class App extends React.Component {
   handleSubmit(e) {
     const uname = document.getElementById('username').value;
     const pword = document.getElementById('password').value;
+    const token = btoa(uname + ':' + pword);
+    const theUrl =  process.env.REACT_APP_AUTH_URL;
 
-    fetch(process.env.REACT_APP_AUTH_URL,{
-      method: 'post',
-      mode: 'cors',
-      headers: {
-        'Content-type' : "application/x-www-form-urlencoded; charset=UTF-8"
-      },
-      body: JSON.stringify({u: uname, p: pword})
-    })
-    .then(function (data){
-      console.log('Request succeeded with JSON response', data);
-      // if(data.)
-      // this.setstate({
-      //   authenticated:true
-      // });
-    })
-    .catch(function (error) {
-      console.log('Request failed', error);
-    });
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.setRequestHeader("Authorization", 'Basic ' + token);
+    xmlHttp.send( null );
+    console.log(xmlHttp.responseText);
+
+    //  fetch(process.env.REACT_APP_AUTH_URL,{
+    //   method: 'GET',
+    //   mode: 'cors',
+    //   headers: {
+    //     'Content-type' : "application/x-www-form-urlencoded; charset=UTF-8",
+    //     'Authorization': "Bearer " + token
+    //   }
+    // })
+    // .then(function (data){
+    //   console.log('Request succeeded with JSON response', data);
+    //   // if(data.)
+    //   // this.setstate({
+    //   //   authenticated:true
+    //   // });
+    // })
+    // .catch(function (error) {
+    //   console.log('Request failed', error);
+    // });
   }
 
   render() {
