@@ -13,6 +13,8 @@ public class AdminUser {
     private String userName;
     private String password;
 
+    public AdminUser() {}
+
     public AdminUser(long id, String companyName, String userName, String password) {
         this.id = id;
         this.companyName = companyName;

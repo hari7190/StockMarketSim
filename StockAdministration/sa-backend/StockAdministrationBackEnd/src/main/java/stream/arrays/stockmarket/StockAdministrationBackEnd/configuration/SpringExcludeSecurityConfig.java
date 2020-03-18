@@ -1,17 +1,27 @@
 package stream.arrays.stockmarket.StockAdministrationBackEnd.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import stream.arrays.stockmarket.StockAdministrationBackEnd.security.APIAuthenticationProvider;
 
 @Configuration
 public class SpringExcludeSecurityConfig extends WebSecurityConfigurerAdapter {
+    @Autowired
+    APIAuthenticationProvider apiAuthenticationProvider;
+
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().antMatchers("/ping").permitAll() ;
-        http.cors();
-//        http.addFilterBefore(new SpringCORSConfig(), BasicAuthenticationFilter.class);
+    public void configure(AuthenticationManagerBuilder auth){
+        auth.authenticationProvider(apiAuthenticationProvider);
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception{
+        http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
     }
 }

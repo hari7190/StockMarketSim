@@ -9,7 +9,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
-
+/*
+*
+* NOT USED ANYMORE !!!!!
+*
+*
+* */
 @Service
 @ComponentScan("stream.arrays.stockmarket.StockAdministrationBackEnd")
 public class SAAuthUserDetailsService implements UserDetailsService{
@@ -18,8 +23,8 @@ public class SAAuthUserDetailsService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println("Herer");
         try {
+            System.out.println("ATTENTION !!! DEPRECATED METHOD TRIGGERED !!! - USERDETAILSERVICE");
             AdminUser adminUser = jdbcTemplate.queryForObject(
                     "SELECT id, company_Name, user_Name, password FROM Admin_user WHERE user_Name = '" + username + "';"
                     ,(rs, rowNum) -> new AdminUser(
@@ -32,7 +37,6 @@ public class SAAuthUserDetailsService implements UserDetailsService{
             if (Objects.isNull(adminUser)) {
                 throw new UsernameNotFoundException(username);
             }
-            System.out.println(adminUser.getPassword());
             return new SAAuthUserPrincipal(adminUser);
         } catch (Exception e){
             e.printStackTrace();

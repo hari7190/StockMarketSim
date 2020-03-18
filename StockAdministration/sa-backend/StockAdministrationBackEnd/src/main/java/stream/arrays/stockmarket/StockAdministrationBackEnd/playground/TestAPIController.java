@@ -18,10 +18,10 @@ public class TestAPIController extends BaseAPIController {
     JdbcTemplate jdbcTemplate;
 
     @RequestMapping(method = RequestMethod.GET, path = "/ping")
-    public String user() {
+    public Principal user(Principal user) {
         int result = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM admin_user", Integer.class);
         System.out.println(result);
-        return "foo";
+        return user;
     }
 
 
