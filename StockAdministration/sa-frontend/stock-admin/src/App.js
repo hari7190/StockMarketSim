@@ -31,7 +31,7 @@ class App extends React.Component {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
     xmlHttp.setRequestHeader("Authorization", 'Basic ' + token);
-    xmlHttp.send( null );
+    xmlHttp.send( );
     console.log(xmlHttp.responseText);
 
     //  fetch(process.env.REACT_APP_AUTH_URL,{
